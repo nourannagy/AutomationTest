@@ -11,5 +11,4 @@ export class HomePage {
         cy.get(this.subTitle).should('contain', title);
     }
 
-
 }

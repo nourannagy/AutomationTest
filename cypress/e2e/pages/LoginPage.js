@@ -25,7 +25,6 @@ export class LoginPage {
         this.enterPassword(password);
         this.pressLogin();
     }
-
     loginPasswordOnly(password) {
         this.enterPassword(password);
         this.pressLogin();

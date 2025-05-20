@@ -8,8 +8,8 @@ export class TryingPage {
 
 
     //define methods of the page
-    selectFile() {
-        cy.get(this.selectFileField).attachFile('example.json')
+    selectFile(path) {
+        cy.get(this.selectFileField).attachFile(path)
     }
 
     //define assertions
