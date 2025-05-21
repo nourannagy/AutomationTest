@@ -44,7 +44,7 @@ describe('Test invalid login', () => {
         loginPage.assertOnEmptyPassword();
     })
 
-    it.only('Verify that user cannot login with empty username and password', () => {
+    it('Verify that user cannot login with empty username and password', () => {
         loginPage.pressLogin();
         loginPage.assertOnEmptyUsername();
     })
