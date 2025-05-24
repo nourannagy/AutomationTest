@@ -9,4 +9,14 @@ module.exports = defineConfig({
       on('task', { downloadFile })
     },
   },
+  //report configurations
+  reporter: 'mochawesome',
+  reporterOptions: {
+    chart: true,
+    overwrite: false,
+    html: true,
+    json: false,
+    reportDir: 'cypress/reports'
+  }
 });
+
