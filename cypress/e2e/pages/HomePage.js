@@ -1,10 +1,14 @@
 export class HomePage {
     //define properties of the page
-    //appName = '.app_logo';
     appName = 'div:contains("Swag Labs")';
     subTitle = '[data-test="title"]';
     addToCart = '.btn_primary'
     shoppingCart = '.shopping_cart_badge'
+    sideMenuButton = '#react-burger-menu-btn'
+    closeiSdeMenu = '#react-burger-cross-btn'
+    sideMenu = '.bm-menu-wrap'
+    allItemsNames = '[data-test="inventory-item-name"]'
+    filterMenu = '.product_sort_container'
 
 
     //define methods 
@@ -15,6 +19,31 @@ export class HomePage {
             cy.wrap($products[randomIndex]).click();
         });
     }
+    orderItemsByNameZA() {
+        const itemNames = [];
+        cy.get(this.allItemsNames).each(($el) => {
+            itemNames.push($el.text().trim());
+        }).then(() => {
+            const sortedDescItems = itemNames.sort().reverse();
+            console.log(`after sort : `, sortedDescItems);
+        })
+
+        const filteredItems = [];
+        cy.get(this.filterMenu).select('za');
+        cy.get(this.allItemsNames).each(($srtEl) => {
+            filteredItems.push($srtEl.text().trim());
+        }).then(() => {
+            console.log(`after filter : `, filteredItems);
+        })
+        expect(filteredItems).to.deep.equal(itemNames);
+    }
+
+    openSideMenu() {
+        cy.get(this.sideMenuButton).click();
+    }
+    closeSideMenu() {
+        cy.get(this.closeiSdeMenu).click();
+    }
 
     // define assertions
     assertOnHomePage(title) {
@@ -23,5 +52,10 @@ export class HomePage {
     assertShoppingCart() {
         cy.get(this.shoppingCart).should('be.visible')
     }
-
+    assertSideMenuOpened() {
+        cy.get(this.sideMenu).should('have.attr', 'aria-hidden', 'false')
+    }
+    assertSideMenuClosed() {
+        cy.get(this.sideMenu).should('have.attr', 'aria-hidden', 'true')
+    }
 }
