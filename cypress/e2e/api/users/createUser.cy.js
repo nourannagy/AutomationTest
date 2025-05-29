@@ -29,7 +29,7 @@ it('Verify that api can create user successfully', () => {
         }
     }).then((response) => {
         //cy.log(JSON.stringify(response))
-        expect(response.status).is.eq(202)
+        expect(response.status).is.eq(201)
         expect(response.body).has.property('email', testEmail)
         expect(response.body).has.property('name', dataJson.name)
     }).then((response) => {
