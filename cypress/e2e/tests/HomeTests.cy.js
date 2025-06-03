@@ -1,13 +1,13 @@
 import { HomePage } from "../pages/HomePage"
-import { LoginPage } from "../pages/LoginPage"
+//import { LoginPage } from "../pages/LoginPage"
 
 const homePage = new HomePage();
-const loginPage = new LoginPage();
+//const loginPage = new LoginPage();
 
 beforeEach(() => {
-    loginPage.visit();
-    loginPage.login('standard_user', 'secret_sauce');
-    homePage.assertOnHomePage('Products');
+    cy.signIn('standard_user', 'secret_sauce')
+    homePage.assertOnHomePage('Products')
+
 })
 
 describe('Test add items to cart', () => {
@@ -17,8 +17,19 @@ describe('Test add items to cart', () => {
     })
 })
 
-it.only('Verify that user can sort products by name in desc. order', () => {
-    homePage.orderItemsByNameZA();
+describe('Test Sort feature', () => {
+    it('Verify that user can sort products by name in desc. order', () => {
+        homePage.orderItemsByNameZA();
+    })
+
+    it('Verify that user can sort products by price in asc. order', () => {
+        homePage.orderItemsByPriceLowtoHigh();
+    })
+
+    it('Verify that user can sort products by price in desc. order', () => {
+        homePage.orderItemsByPriceHightoLow();
+    })
+
 })
 
 describe('Test side menu', () => {

@@ -1,5 +1,5 @@
 export class HomePage {
-    //define properties of the page
+    //define properties
     appName = 'div:contains("Swag Labs")';
     subTitle = '[data-test="title"]';
     addToCart = '.btn_primary'
@@ -8,8 +8,8 @@ export class HomePage {
     closeiSdeMenu = '#react-burger-cross-btn'
     sideMenu = '.bm-menu-wrap'
     allItemsNames = '[data-test="inventory-item-name"]'
+    allItemsPrices = '[data-test="inventory-item-price"]'
     filterMenu = '.product_sort_container'
-
 
     //define methods 
     selectRandomItem() {
@@ -38,6 +38,44 @@ export class HomePage {
         expect(filteredItems).to.deep.equal(itemNames);
     }
 
+    orderItemsByPriceLowtoHigh() {
+        const itemPrices = [];
+        cy.get(this.allItemsPrices).each(($el) => {
+            itemPrices.push($el.text().trim());
+        }).then(() => {
+            const sortedAscItems = itemPrices.sort();
+            console.log(`after sort : `, sortedAscItems);
+        })
+
+        const filteredItems = [];
+        cy.get(this.filterMenu).select('lohi');
+        cy.get(this.allItemsPrices).each(($el) => {
+            filteredItems.push($el.text().trim());
+        }).then(() => {
+            console.log(`after filter : `, filteredItems);
+        })
+        expect(filteredItems).to.deep.equal(itemPrices);
+    }
+
+    orderItemsByPriceHightoLow() {
+        const itemPrices = [];
+        cy.get(this.allItemsPrices).each(($el) => {
+            itemPrices.push($el.text().trim());
+        }).then(() => {
+            const sortedDecItems = itemPrices.sort().reverse();
+            console.log(`after sort : `, sortedDecItems);
+        })
+
+        const filteredItems = [];
+        cy.get(this.filterMenu).select('hilo');
+        cy.get(this.allItemsPrices).each(($el) => {
+            filteredItems.push($el.text().trim());
+        }).then(() => {
+            console.log(`after filter : `, filteredItems);
+        })
+        expect(filteredItems).to.deep.equal(itemPrices);
+    }
+
     openSideMenu() {
         cy.get(this.sideMenuButton).click();
     }
@@ -47,7 +85,9 @@ export class HomePage {
 
     // define assertions
     assertOnHomePage(title) {
-        cy.get(this.subTitle).should('contain', title);
+        // cy.get(this.subTitle).should('contain', title);
+        cy.get(this.subTitle).invoke('text').should('eq', title)
+
     }
     assertShoppingCart() {
         cy.get(this.shoppingCart).should('be.visible')

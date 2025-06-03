@@ -1,25 +1,41 @@
 const { defineConfig } = require("cypress");
 const { downloadFile } = require('cypress-downloadfile/lib/addPlugin')
+const mochawesome = require("cypress-mochawesome-reporter/plugin");
+
 
 
 module.exports = defineConfig({
   e2e: {
     chromeWebSecurity: false,
+    baseUrl: 'https://www.saucedemo.com',
     //pageLoadTimeout:20000,
-    //Cypress automatically re- runs tests when files change during development:
     //watchForFileChanges:false,
     setupNodeEvents(on, config) {
+      mochawesome(on);
       on('task', { downloadFile })
     },
   },
   //report configurations
-  reporter: 'mochawesome',
+  // reporter: 'mochawesome',
+  // reporterOptions: {
+  //   chart: true,
+  //   overwrite: false,
+  //   html: false,
+  //   json: true,
+  //   reportDir: 'cypress/reports/mochareports'
+  // }
+  //the following needs fix
+  reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
-    chart: true,
+    reportDir: "cypress/reports/mocha",
     overwrite: false,
-    html: true,
-    json: false,
-    reportDir: 'cypress/reports'
+    html: false,
+    json: true,
+    chart: true,
+    reportPageTitle: "Test Report",
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: false,
   }
 });
 
