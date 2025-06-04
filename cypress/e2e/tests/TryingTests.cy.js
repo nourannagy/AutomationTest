@@ -1,4 +1,4 @@
-import { TryingPage } from "../pages/TryingPage";
+import { TryingPage } from "../../support/pages/TryingPage";
 
 const tryingPage = new TryingPage();
 
