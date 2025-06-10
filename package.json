@@ -17,7 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "cypress": "^14.4.0",
-    "cypress-downloadfile": "^1.2.4"
+    "cypress-downloadfile": "^1.2.4",
+    "mssql": "^11.0.1"
   },
   "devDependencies": {
     "cypress-file-upload": "^5.0.8",

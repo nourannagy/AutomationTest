@@ -16,14 +16,14 @@ module.exports = defineConfig({
     },
   },
   //report configurations
-      // reporter: 'mochawesome',
-      // reporterOptions: {
-      //   chart: true,
-      //   overwrite: false,
-      //   html: false,
-      //   json: true,
-      //   reportDir: 'cypress/reports/mochareports'
-      // }
+  // reporter: 'mochawesome',
+  // reporterOptions: {
+  //   chart: true,
+  //   overwrite: false,
+  //   html: false,
+  //   json: true,
+  //   reportDir: 'cypress/reports/mochareports'
+  // }
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     reportDir: "cypress/reports/mocha",
@@ -36,5 +36,8 @@ module.exports = defineConfig({
     inlineAssets: true,
     saveAllAttempts: false,
   }
+
+
+
 });
 
