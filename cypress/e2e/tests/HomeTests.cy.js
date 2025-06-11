@@ -43,4 +43,17 @@ describe('Test side menu', () => {
         homePage.closeSideMenu();
         homePage.assertSideMenuClosed();
     })
+
+    describe('Test social media links', () => {
+        it.only('Verify that user can access LinkedIn link', () => {
+            homePage.openSocialLink('LinkedIn');
+            //homePage.assertOnLinkedinURL();
+        })
+        it('Verify that user can access Twitter link', () => {
+            homePage.openSocialLink('Twitter');
+        })
+        it('Verify that user can access Facebook link', () => {
+            homePage.openSocialLink('Facebook');
+        })
+    })
 })
