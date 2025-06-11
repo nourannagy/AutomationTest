@@ -10,6 +10,7 @@ export class HomePage {
     allItemsNames = '[data-test="inventory-item-name"]'
     allItemsPrices = '[data-test="inventory-item-price"]'
     filterMenu = '.product_sort_container'
+    socialIcons = 'a[target="_blank"]'
 
     //define methods 
     selectRandomItem() {
@@ -83,6 +84,10 @@ export class HomePage {
         cy.get(this.closeiSdeMenu).click();
     }
 
+    openSocialLink(paltform) {
+        cy.get(this.socialIcons).contains(paltform).click()
+    }
+
     // define assertions
     assertOnHomePage(title) {
         // cy.get(this.subTitle).should('contain', title);
@@ -98,4 +103,8 @@ export class HomePage {
     assertSideMenuClosed() {
         cy.get(this.sideMenu).should('have.attr', 'aria-hidden', 'true')
     }
+    //needs fix
+    // assertOnLinkedinURL() {
+    //     cy.url().should('deep.equal', 'https://www.linkedin.com/company/sauce-labs/')
+    // }
 }
