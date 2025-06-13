@@ -4,6 +4,7 @@ export class HomePage {
     subTitle = '[data-test="title"]';
     addToCart = '.btn_primary'
     shoppingCart = '.shopping_cart_badge'
+    shoppingCartIcon = '#shopping_cart_container'
     sideMenuButton = '#react-burger-menu-btn'
     closeiSdeMenu = '#react-burger-cross-btn'
     sideMenu = '.bm-menu-wrap'
@@ -11,6 +12,8 @@ export class HomePage {
     allItemsPrices = '[data-test="inventory-item-price"]'
     filterMenu = '.product_sort_container'
     socialIcons = 'a[target="_blank"]'
+    allProducts = '.inventory_item'
+    addedItems = '[data-test*="remove"]'
 
     //define methods 
     selectRandomItem() {
@@ -20,6 +23,31 @@ export class HomePage {
             cy.wrap($products[randomIndex]).click();
         });
     }
+
+
+    // parentsPractice() {
+    //     let added = cy.get(this.allProducts).children().filter('[data-test="inventory-item-description"]').children().filter('.pricebar').children().filter(this.addedItems)
+    //     let wholeElement = added.parent().parent()
+    //     let titleText = wholeElement.invoke('text')
+    //     console.log(titleText)
+    // }
+
+    getAddedItems() {
+        const addedIemsArr = []
+        return cy.get(this.allProducts)
+            .filter((i, el) => Cypress.$(el).find(this.addedItems).length > 0)
+            .find('.inventory_item_name')
+            .each(($el) => {
+                cy.wrap($el).invoke('text').then((text) => {
+                    addedIemsArr.push(text.trim())
+                });
+            }).then(() => {
+                return addedIemsArr;
+            })
+    }
+
+
+
     orderItemsByNameZA() {
         const itemNames = [];
         cy.get(this.allItemsNames).each(($el) => {
@@ -86,6 +114,10 @@ export class HomePage {
 
     openSocialLink(paltform) {
         cy.get(this.socialIcons).contains(paltform).click()
+    }
+
+    openCartPage() {
+        cy.get(this.shoppingCartIcon).click()
     }
 
     // define assertions

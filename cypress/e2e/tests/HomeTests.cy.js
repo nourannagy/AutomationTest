@@ -1,7 +1,9 @@
 import { HomePage } from "../../support/pages/HomePage"
 //import { LoginPage } from "../../support/pages/LoginPage"
+import { CartPage } from "../../support/pages/CartPage";
 
 const homePage = new HomePage();
+const cartPage = new CartPage();
 //const loginPage = new LoginPage();
 
 beforeEach(() => {
@@ -15,6 +17,17 @@ describe('Test add items to cart', () => {
         homePage.selectRandomItem();
         homePage.assertShoppingCart();
     })
+
+    it('Verify that user can open shopping cart cart successfully', () => {
+        homePage.openCartPage()
+        cartPage.asserOnCartTitle('Your Cart')
+    })
+
+    it.only('verify that i can get all added items', () => {
+        homePage.getAddedItems()
+    })
+
+
 })
 
 describe('Test Sort feature', () => {
@@ -45,7 +58,7 @@ describe('Test side menu', () => {
     })
 
     describe('Test social media links', () => {
-        it.only('Verify that user can access LinkedIn link', () => {
+        it('Verify that user can access LinkedIn link', () => {
             homePage.openSocialLink('LinkedIn');
             //homePage.assertOnLinkedinURL();
         })
