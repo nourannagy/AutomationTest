@@ -24,14 +24,6 @@ export class HomePage {
         });
     }
 
-
-    // parentsPractice() {
-    //     let added = cy.get(this.allProducts).children().filter('[data-test="inventory-item-description"]').children().filter('.pricebar').children().filter(this.addedItems)
-    //     let wholeElement = added.parent().parent()
-    //     let titleText = wholeElement.invoke('text')
-    //     console.log(titleText)
-    // }
-
     getAddedItems() {
         const addedIemsArr = []
         return cy.get(this.allProducts)
@@ -122,7 +114,6 @@ export class HomePage {
 
     // define assertions
     assertOnHomePage(title) {
-        // cy.get(this.subTitle).should('contain', title);
         cy.get(this.subTitle).invoke('text').should('eq', title)
 
     }
