@@ -54,7 +54,7 @@ export class TryingPage {
     }
 
     selectQuantityUp() {
-        const count = 6
+        const count = 4
         cy.get(this.quantityField).focus().then($el => {
             Cypress._.times(count, () => {
                 cy.wrap($el).type('{uparrow}')
