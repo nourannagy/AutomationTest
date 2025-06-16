@@ -25,8 +25,23 @@ it('Verify that user can cancel chekout ', (() => {
     cartPage.asserOnCartTitle('Your Cart')
 }))
 
-it.only('Verify that system validates on first name', () => {
+it('Verify that system validates on first name', () => {
     checkoutPage.enterLastName('Ali')
     checkoutPage.enterZipCode(999)
     checkoutPage.pressContinoue()
+    checkoutPage.assertOnEmptyFirstName()
+})
+
+it('Verify that system validates on last name', () => {
+    checkoutPage.enterFirstName('Ahmed')
+    checkoutPage.enterZipCode(999)
+    checkoutPage.pressContinoue()
+    checkoutPage.assertOnEmptyLastName()
+})
+
+it('Verify that system validates on last name', () => {
+    checkoutPage.enterFirstName('Ahmed')
+    checkoutPage.enterLastName('Ali')
+    checkoutPage.pressContinoue()
+    checkoutPage.assertOnEmptyZipCode()
 })

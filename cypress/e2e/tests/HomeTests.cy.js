@@ -23,7 +23,7 @@ describe('Test add items to cart', () => {
         cartPage.asserOnCartTitle('Your Cart')
     })
 
-    it.only('verify that i can get all added items', () => {
+    it('verify that i can get all added items', () => {
         homePage.selectRandomItem();
         homePage.getAddedItems()
     })

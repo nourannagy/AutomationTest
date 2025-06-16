@@ -6,6 +6,7 @@ export class CheckoutPage {
     zipCodeField = '#postal-code'
     continueBtn = '#continue'
     cancelBtn = '#cancel'
+    checkoutError = '.error-message-container'
 
     //methods
     fillCheckoutInfo(fname, lname, zcode) {
@@ -36,4 +37,17 @@ export class CheckoutPage {
     assertOnCheckoutTitle(title) {
         cy.get(this.checkoutTitle).invoke('text').should('eq', title)
     }
+
+    assertOnEmptyFirstName() {
+        cy.get(this.checkoutError).should('be.visible').and('contain.text', 'Error: First Name is required')
+    }
+
+    assertOnEmptyLastName() {
+        cy.get(this.checkoutError).should('be.visible').and('contain.text', 'Error: Last Name is required')
+    }
+
+    assertOnEmptyZipCode() {
+        cy.get(this.checkoutError).should('be.visible').and('contain.text', 'Error: Postal Code is required')
+    }
+
 }

@@ -42,7 +42,7 @@ describe('Layout Two Form', () => {
     it('Verify that you can select quantity from counter up', () => {
         tryingPage.selectQuantityUp()
     })
-    it.only('Verify that you can select quantity from counter down', () => {
+    it('Verify that you can select quantity from counter down', () => {
         tryingPage.selectQuantitydown()
     })
 })
