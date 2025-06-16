@@ -2,10 +2,12 @@
 import { HomePage } from "../../support/pages/HomePage"
 import { CheckoutPage } from "../../support/pages/CheckoutPage";
 import { CartPage } from "../../support/pages/CartPage";
+import { CheckoutOverviewPage } from "../../support/pages/CheckoutOverviewPage";
 
 const homePage = new HomePage();
 const checkoutPage = new CheckoutPage();
 const cartPage = new CartPage();
+const checkoutOverviewPage = new CheckoutOverviewPage();
 
 beforeEach(() => {
     cy.signIn('standard_user', 'secret_sauce')
@@ -15,9 +17,10 @@ beforeEach(() => {
 
 })
 
-it('Verify that user can compelete chekout by filling his data in the form', (() => {
+it.only('Verify that user can compelete chekout by filling his data in the form', (() => {
     checkoutPage.fillCheckoutInfo('Ahmed', 'Ali', 559)
     checkoutPage.pressContinoue()
+    checkoutOverviewPage.assertOnOverviewTitle('Checkout: Overview')
 }))
 
 it('Verify that user can cancel chekout ', (() => {
