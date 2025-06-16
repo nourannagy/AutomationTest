@@ -10,7 +10,6 @@ export class CartPage {
     cartRemoveButtons = 'button[data-test*="remove"]'
     continueShoppingBtn = '#continue-shopping'
     checkoutBtn = '#checkout'
-    checkoutTitle = '.title'
     itemDetailsName = '.inventory_details_name'
 
 
@@ -65,9 +64,4 @@ export class CartPage {
     asserOnCartTitle(title) {
         cy.get(this.cartPageTitle).invoke('text').should('eq', title)
     }
-
-    assertOnCheckoutTitle(title) {
-        cy.get(this.checkoutTitle).invoke('text').should('eq', title)
-    }
-
 }

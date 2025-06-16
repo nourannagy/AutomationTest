@@ -1,7 +1,9 @@
 import { CartPage } from "../../support/pages/CartPage";
+import { CheckoutPage } from "../../support/pages/CheckoutPage";
 import { HomePage } from "../../support/pages/HomePage"
 const cartPage = new CartPage();
 const homePage = new HomePage();
+const checkoutPage = new CheckoutPage();
 
 beforeEach(() => {
     cy.signIn('standard_user', 'secret_sauce')
@@ -32,11 +34,11 @@ it('Verify that user can go back to continoue shopping', () => {
 it('Verify that user can checkout his transactions', () => {
     cartPage.compareSelectedItemsinCart()
     cartPage.checkout()
-    cartPage.assertOnCheckoutTitle('Checkout: Your Information')
+    checkoutPage.assertOnCheckoutTitle('Checkout: Your Information')
 
 })
 
-it.only('Verify that user can see details of specific item from cart', () => {
+it('Verify that user can see details of specific item from cart', () => {
     cartPage.compareSelectedItemsinCart()
     cartPage.showItemDetails()
 })

@@ -25,14 +25,6 @@ export class LoginPage {
         this.enterPassword(password);
         this.pressLogin();
     }
-    loginPasswordOnly(password) {
-        this.enterPassword(password);
-        this.pressLogin();
-    }
-    loginUsernameOnly(username) {
-        this.enterUsername(username);
-        this.pressLogin();
-    }
 
     //define assertions
 

@@ -34,13 +34,15 @@ describe('Test invalid login', () => {
     })
 
     it('Verify that user cannot login with empty username', () => {
-        loginPage.loginPasswordOnly('secret_sauce1');
+        loginPage.enterPassword('secret_sauce')
+        loginPage.pressLogin()
         loginPage.assertOnEmptyUsername()
 
     })
 
     it('Verify that user cannot login with empty password', () => {
-        loginPage.loginUsernameOnly('standard_user');
+        loginPage.enterUsername('standard_user');
+        loginPage.pressLogin()
         loginPage.assertOnEmptyPassword();
     })
 
